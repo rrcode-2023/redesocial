@@ -6,11 +6,14 @@
   "author": "richzago <rich.czago@gmail.com>",
   "license": "MIT",
   "devDependencies": {
+    "@types/express": "^4.17.17",
     "@types/node": "^18.16.3",
     "typescript": "^5.0.4"
   },
   "dependencies": {
     "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-async-errors": "^3.1.1",
     "pg": "^8.10.0",
     "reflect-metadata": "^0.1.13",
     "typeorm": "^0.3.15"
