@@ -1,15 +1,11 @@
+import "reflect-metadata";
+import "express-async-errors";
 import app from "./app";
-import { AppDataSource } from "./data-source";
-import "dotenv/config";
+// Importando o arquivo data-source.ts para estabelecer a conexão com o banco de dados
+import "./data-source";
 
-(async () => {
-  await AppDataSource.initialize().catch((err) => {
-    console.error("Error during Data Source initialization", err);
-  });
+const PORT = process.env.PORT;
 
-  const PORT = process.env.PORT;
-
-  app.listen(PORT || 3000, () => {
-    console.log(`Servidor executando na porta ${PORT}`);
-  });
-})();
+app.listen(PORT || 3000, () => {
+  console.log(`Servidor executando na porta ${PORT}`);
+});
