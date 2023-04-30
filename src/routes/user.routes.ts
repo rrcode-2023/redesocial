@@ -1,6 +1,7 @@
 import { Router } from "express";
-import { createUserController } from "../controllers/user.controller";
+import { createUserController, deleteUserController } from "../controllers/user.controller";
 
 export const userRouter = Router();
 
 userRouter.post("", createUserController);
+userRouter.delete("/:id", deleteUserController);
