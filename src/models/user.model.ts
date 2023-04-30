@@ -1,10 +1,12 @@
 import mongoose from "mongoose";
+import { IPost } from "./post.models";
 
-export interface IUser extends mongoose.Document {
+export interface IUser extends Omit<mongoose.Document, "id"> {
   firstName: string;
   lastName: string;
   email: string;
   birthDate: Date;
+  createdAt: Date;
   updatedAt?: Date;
   gender: string;
   profilePicture: string;
@@ -29,6 +31,11 @@ const userSchema = new mongoose.Schema({
     type: Date,
     required: true,
   },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+    required: true,
+  },
   updatedAt: {
     type: Date,
     default: Date.now,
@@ -45,6 +52,12 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  posts: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Post",
+    },
+  ],
 });
 
 const UserModel = mongoose.model("User", userSchema);
