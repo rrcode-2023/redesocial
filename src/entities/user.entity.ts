@@ -1,31 +1,31 @@
-import { Entity, ObjectId, ObjectIdColumn, Column } from "typeorm";
+// import { Entity, ObjectId, ObjectIdColumn, Column } from "typeorm";
 
-@Entity()
-export class User {
-  @ObjectIdColumn()
-  id: ObjectId;
+// @Entity("users")
+// export class User {
+//   @ObjectIdColumn()
+//   readonly id: ObjectId;
 
-  @Column()
-  firstName: string;
+//   @Column({ type: "varchar" })
+//   firstName: string;
 
-  @Column()
-  lastName: string;
+//   @Column({ type: "varchar" })
+//   lastName: string;
 
-  @Column()
-  email: string;
+//   @Column({ type: "varchar", unique: true })
+//   email: string;
 
-  @Column()
-  birthDate: Date;
+//   @Column({ type: "date" })
+//   birthDate: Date;
 
-  @Column({ nullable: true })
-  updatedAt: Date;
+//   @Column({ nullable: true, type: "date" })
+//   updatedAt: Date;
 
-  @Column()
-  gender: string;
+//   @Column({ type: "varchar" })
+//   gender: string;
 
-  @Column()
-  profilePicture: string;
+//   @Column({ type: "varchar" })
+//   profilePicture: string;
 
-  @Column()
-  profileCover: string;
-}
+//   @Column({ type: "varchar" })
+//   profileCover: string;
+// }
