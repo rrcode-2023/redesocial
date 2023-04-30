@@ -1,14 +1,23 @@
 import { Request, Response } from "express";
 import { createUserService } from "../services/users/createUser.service";
+import { deleteUserService } from "../services/users/deleteUser.service";
 
-const createUserController = async (req: Request, res: Response) => {
-  try {
-    const userData = req.body;
-    const user = await createUserService(userData);
-    return res.status(201).json(user);
-  } catch (error) {
-    console.log(error);
-  }
+const createUserController = async (
+  req: Request,
+  res: Response
+): Promise<Response> => {
+  const userData = req.body;
+  const user = await createUserService(userData);
+  return res.status(201).json(user);
 };
 
-export { createUserController };
+const deleteUserController = async (
+  req: Request,
+  res: Response
+): Promise<Response> => {
+  const id = req.params.id;
+  await deleteUserService(id);
+  return res.status(204).send();
+};
+
+export { createUserController, deleteUserController };
