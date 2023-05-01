@@ -16,3 +16,5 @@ export const userSchema = z.object({
   profilePicture: z.string().max(255).nullable().default(null),
   profileCover: z.string().max(255).nullable().default(null),
 });
+
+export const userUpdateSchema = userSchema.partial();
