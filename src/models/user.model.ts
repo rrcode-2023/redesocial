@@ -1,16 +1,16 @@
 import mongoose from "mongoose";
-import { IPost } from "./post.models";
 
 export interface IUser extends Omit<mongoose.Document, "id"> {
   firstName: string;
   lastName: string;
   email: string;
+  password: string;
   birthDate: Date;
   createdAt: Date;
   updatedAt?: Date;
   gender: string;
-  profilePicture: string;
-  profileCover: string;
+  profilePicture?: string;
+  profileCover?: string;
 }
 
 const userSchema = new mongoose.Schema({
@@ -31,6 +31,10 @@ const userSchema = new mongoose.Schema({
     type: Date,
     required: true,
   },
+  password: {
+    type: String,
+    required: true,
+  },
   createdAt: {
     type: Date,
     default: Date.now,
@@ -46,11 +50,9 @@ const userSchema = new mongoose.Schema({
   },
   profilePicture: {
     type: String,
-    required: true,
   },
   profileCover: {
     type: String,
-    required: true,
   },
   posts: [
     {
