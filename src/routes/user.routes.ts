@@ -5,17 +5,18 @@ import {
   listUserController,
   updateUserController,
 } from "../controllers/user/user.controller";
-import { validateUserBody } from "../middlewares/validateBody.middleware";
+import { validateBody } from "../middlewares/validateBody.middleware";
 import checkDuplicateEmailMiddleware from "../middlewares/checkDuplicateEmail.middleware";
 import { validateIdMiddleware } from "../middlewares/validateId.middleware";
 import { AuthUserMiddleware } from "../middlewares/authUser.middleware";
 import { authorizeUserAction } from "../middlewares/authorizeUserAction";
+import { userSchema, userUpdateSchema } from "../schemas/user.schema";
 
 export const userRouter = Router();
 
 userRouter.post(
   "",
-  validateUserBody,
+  validateBody(userSchema),
   checkDuplicateEmailMiddleware,
   createUserController
 );
@@ -34,6 +35,7 @@ userRouter.delete(
 );
 userRouter.patch(
   "/:id",
+  validateBody(userUpdateSchema),
   validateIdMiddleware,
   AuthUserMiddleware,
   authorizeUserAction,
