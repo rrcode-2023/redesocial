@@ -22,6 +22,7 @@ userRouter.post(
 );
 userRouter.get(
   "/:id",
+  validateIdMiddleware,
   AuthUserMiddleware,
   authorizeUserAction,
   listUserController
