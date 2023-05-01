@@ -1,9 +1,9 @@
 import { IUser, UserModel } from "../../models/user.model";
-import bcryptjs from "bcryptjs";
+import { hashPassword } from "../../utils/session/hashPassword";
+
 const createUserService = async (userData: IUser): Promise<IUser> => {
   const { password, ...rest } = userData;
-  const salt = await bcryptjs.genSalt(10);
-  const hashedPassword = await bcryptjs.hash(password, salt);
+  const hashedPassword = await hashPassword(password);
 
   const user = new UserModel({
     ...rest,
