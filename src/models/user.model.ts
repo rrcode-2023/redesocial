@@ -33,7 +33,7 @@ const userSchema = new mongoose.Schema({
   },
   password: {
     type: String,
-    required: true,
+    required: true
   },
   createdAt: {
     type: Date,
@@ -61,6 +61,14 @@ const userSchema = new mongoose.Schema({
     },
   ],
 });
+
+userSchema.set("toJSON", {
+  transform: (doc, ret, options) => {
+    delete ret.password;
+    return ret;
+  },
+});
+
 
 const UserModel = mongoose.model("User", userSchema);
 
