@@ -1,15 +1,18 @@
-import { RequestHandler } from "express";
-import { userSchema } from "../schemas/user.schema";
+import { NextFunction, Response, Request } from "express";
+import { ZodTypeAny } from "zod";
+import * as z from "zod";
 
-const validateUserBody: RequestHandler = (req, res, next) => {
-  const result = userSchema.safeParse(req.body);
-
-  if (result.success) {
-    req.body = result.data;
-    return next();
-  } else {
-    return res.status(400).json({ errors: result.error });
-  }
-};
-
-export { validateUserBody };
+export const validateBody =
+  (schema: ZodTypeAny) => (req: Request, res: Response, next: NextFunction) => {
+    try {
+      schema.parse(req.body);
+      return next();
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        const errorMessage = error.flatten().fieldErrors;
+        return res.status(400).json({
+          errors: errorMessage,
+        });
+      }
+    }
+  };
