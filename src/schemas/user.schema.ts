@@ -1,5 +1,4 @@
 import * as z from "zod";
-import { AppError } from "../errors/appError";
 
 export const userSchema = z.object({
   firstName: z.string().min(3).max(255),
