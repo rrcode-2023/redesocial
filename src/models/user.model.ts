@@ -33,7 +33,7 @@ const userSchema = new mongoose.Schema({
   },
   password: {
     type: String,
-    required: true
+    required: true,
   },
   createdAt: {
     type: Date,
@@ -54,6 +54,18 @@ const userSchema = new mongoose.Schema({
   profileCover: {
     type: String,
   },
+  requests: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Request",
+    },
+  ],
+  friends: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Friend",
+    },
+  ],
   posts: [
     {
       type: mongoose.Schema.Types.ObjectId,
@@ -68,7 +80,6 @@ userSchema.set("toJSON", {
     return ret;
   },
 });
-
 
 const UserModel = mongoose.model("User", userSchema);
 
