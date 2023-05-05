@@ -9,7 +9,7 @@ import { validateBody } from "../middlewares/validateBody.middleware";
 import checkDuplicateEmailMiddleware from "../middlewares/checkDuplicateEmail.middleware";
 import { validateIdMiddleware } from "../middlewares/validateId.middleware";
 import { AuthUserMiddleware } from "../middlewares/authUser.middleware";
-import { authorizeUserAction } from "../middlewares/authorizeUserAction";
+import { authorizeUserActionMiddleware } from "../middlewares/authorizeUserAction.middleware";
 import { userSchema, userUpdateSchema } from "../schemas/user.schema";
 
 export const userRouter = Router();
@@ -24,14 +24,14 @@ userRouter.get(
   "/:id",
   validateIdMiddleware,
   AuthUserMiddleware,
-  authorizeUserAction,
+  authorizeUserActionMiddleware,
   listUserController
 );
 userRouter.delete(
   "/:id",
   validateIdMiddleware,
   AuthUserMiddleware,
-  authorizeUserAction,
+  authorizeUserActionMiddleware,
   deleteUserController
 );
 userRouter.patch(
@@ -39,6 +39,6 @@ userRouter.patch(
   validateBody(userUpdateSchema),
   validateIdMiddleware,
   AuthUserMiddleware,
-  authorizeUserAction,
+  authorizeUserActionMiddleware,
   updateUserController
 );
