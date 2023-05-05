@@ -3,10 +3,10 @@ import { IUser } from "./user.model";
 
 export interface IPost extends mongoose.Document {
   content: String;
-  imgPost: String;
+  imgPost?: String | undefined;
   createdAt: Date;
-  updatedAt?: Date;
-  author: IUser["_id"];
+  updatedAt: Date;
+  createdBy: IUser["_id"];
 }
 
 const postSchema = new mongoose.Schema({
