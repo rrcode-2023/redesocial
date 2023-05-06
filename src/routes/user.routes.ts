@@ -1,5 +1,6 @@
 import { Router } from "express";
 import {
+  changePasswordController,
   createUserController,
   deleteUserController,
   listUserController,
@@ -41,4 +42,10 @@ userRouter.patch(
   AuthUserMiddleware,
   authorizeUserActionMiddleware,
   updateUserController
+);
+userRouter.patch(
+  "/:id/change-password",
+  AuthUserMiddleware,
+  validateIdMiddleware,
+  changePasswordController
 );
