@@ -11,13 +11,13 @@ import checkDuplicateEmailMiddleware from "../middlewares/checkDuplicateEmail.mi
 import { validateIdMiddleware } from "../middlewares/validateId.middleware";
 import { AuthUserMiddleware } from "../middlewares/authUser.middleware";
 import { authorizeUserActionMiddleware } from "../middlewares/authorizeUserAction.middleware";
-import { userSchema, userUpdateSchema } from "../schemas/user.schema";
+import { userRequestSchema, userUpdateSchema } from "../schemas/user.schema";
 
 export const userRouter = Router();
 
 userRouter.post(
   "",
-  validateBody(userSchema),
+  validateBody(userRequestSchema),
   checkDuplicateEmailMiddleware,
   createUserController
 );
