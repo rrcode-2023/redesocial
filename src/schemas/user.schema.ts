@@ -1,7 +1,6 @@
 import * as z from "zod";
-import { AppError } from "../errors/appError";
 
-export const userSchema = z.object({
+export const userRequestSchema = z.object({
   firstName: z.string().min(3).max(255),
   lastName: z.string().min(2).max(255),
   email: z.string().email().max(255),
