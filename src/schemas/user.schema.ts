@@ -20,4 +20,4 @@ export const userRequestSchema = z.object({
   profileCover: z.string().max(255).nullable().default(null),
 });
 
-export const userUpdateSchema = userSchema.partial();
+export const userUpdateSchema = userRequestSchema.partial();
